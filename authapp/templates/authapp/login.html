@@ -1,0 +1,36 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+{% block extra_style %}
+  <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="authorization">
+    <div class="container">
+      <div class="auth_inner">
+        <div class="login">
+          <h2 class="h2 text-center head">
+          Вход в систему
+          </h2>
+        </div>
+        {% csrf_token %}
+        <form  method="POST" class="adminlogin">
+          {% csrf_token %}
+          <div class="login">
+            {{ login_form.username }}
+          </div>
+          <div class="password">
+            {{ login_form.password }}
+          </div>
+          <div class="login__button">
+            <button class="button__item">
+              <a href="{% url 'auth:login' %}" class="button_item_link">Sign in</a> 
+            </button>
+            <button class="button__item" >
+              <a href="{% url 'auth:register' %}" class="button_item_link">Sign up</a> 
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
