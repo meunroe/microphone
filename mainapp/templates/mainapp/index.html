@@ -1,0 +1,440 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;600&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__top">
+          <div class="header__top-left">
+            <div class="logo">
+              <img class="logo__img" src="{% static 'images/logo.svg' %}" alt="logo" />
+              <p class="logo__text">newmicstore</p>
+            </div>
+
+            <nav class="menu">
+              <ul class="list__menu">
+                <li class="menu__item">
+                  <a href="#">About us</a>
+                </li>
+                <li class="menu__item">
+                  <a href="#">Catalog</a>
+                </li>
+                <li class="menu__item">
+                  <a href="#">sale</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="burger">
+            <span></span>
+          </div>
+          <div class="header__top-right">
+            <a href="tel:89624393933" class="phone">+7(962)-439-39-33</a>
+          </div>
+        </div>
+        <div class="header__content">
+          <div class="header__content-top">
+            <h1 class="header__title">
+              Welcome to our collection<br />
+              of premium microphones
+            </h1>
+            <p class="content__top-text">
+              Our microphones are popular all over the world. They have proven themselves in large recording studios and home studios. A huge catalog will allow you to choose the right tool for absolutely everyone
+            </p>
+          </div>
+          <div class="header__content-bottom">
+            <div class="header__content-sliders">
+              <div>
+                <div class="header__content-photo__sliders">
+                  <div class="photo__slider-items">
+                    <img
+                      src="{% static 'images/whatch1.png' %}"
+                      alt="watch"
+                      class="photo__slider-item"
+                    />
+                  </div>
+                  <div class="photo__slider-item">
+                    <img
+                      src="{% static 'images/whatch2.png' %}"
+                      alt="watch"
+                      class="photo__slider-item"
+                    />
+                  </div>
+                  <div class="photo__slider-item">
+                    <img
+                      src="{% static 'images/whatch3.png' %}"
+                      alt="watch"
+                      class="photo__slider-item"
+                    />
+                  </div>
+                  <div class="photo__slider-item">
+                    <img
+                      src="{% static 'images/whatch4.png' %}"
+                      alt="watch"
+                      class="photo__slider-item"
+                    />
+                  </div>
+                  <div class="photo__slider-item">
+                    <img
+                      src="{% static 'images/whatch5.png' %}"
+                      alt="watch"
+                      class="photo__slider-item"
+                    />
+                  </div>
+                </div>
+                <div class="slider__switch">
+                  <div class="slider__controls">
+                    <button type="button" class="slider__prev">
+                      <img
+                        src="{% static 'images/chevron-left.png' %}"
+                        alt=""
+                        class="prev__arrow"
+                      />
+                    </button>
+                    <button type="button" class="slider__next">
+                      <img src="{% static 'images/chevron-left.png' %}" alt="" />
+                    </button>
+                  </div>
+                  <div class="current__text">
+                    <div class="current__slide-number">1</div>
+                    <div class="marking"></div>
+                    <div class="total__slide-number">5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="header__content-big__photo">
+              <img
+                src="{% static 'images/bigphoto.png' %}"
+                alt=""
+                class="header__big__photo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="product__about">
+        <div class="container">
+          <div class="product__about-top">
+            <h3 class="product__about-title">About us</h3>
+            <div class="product__about-text">
+              <p>
+                Welcome to our premium microphone store. We have been selling microphones since 1970 and have a huge customer base.
+              </p>
+              <p>
+                In our collection you will find microphones from different manufacturers, from Audio-technica to microphones from Souyz. Are you looking for the best solutions for your recording studio? You've chosen the right path.
+              </p>
+            </div>
+          </div>
+          <div class="product__about-bottom">
+            <img src="{% static 'images/gif.png' %}" alt="gif" class="product__about-img" />
+          </div>
+        </div>
+      </section>
+      <section class="catalog">
+        <div class="container">
+          <h3 class="catalog__title">Catalog</h3>
+          <div class="catalog__price">
+            {% for product in products %}
+            <div class="catalog__price-item">
+              <a href="{% url 'basketapp:basket_add' product.pk %} ">
+                <img src="{{ product.image.url }}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    <!-- Tube Watch S42 Date Steel With Black Case -->
+                     {{ product.description }}
+                  </p>
+                  <div class="price__product">€{{ product.price }}</div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+            <!-- <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+            <div class="catalog__price-item">
+              <a href="">
+                <img src="{% static 'images/whatchcatalog.png' %}" alt="" class="product" />
+                <div class="product__text">
+                  <p class="description__product">
+                    Tube Watch S42 Date Steel With Black Case
+                  </p>
+                  <div class="price__product">€395</div>
+                </div>
+              </a>
+            </div>
+          </div> -->
+
+          <div class="buy__button">
+            <a href="#" class="buy__button-link">Buy now</a>
+          </div>
+        </div>
+      </section>
+      <section class="green__and__bronze">
+        <div class="container">
+          <h3 class="green__title">
+            Best Solutions<br />
+            Best Tools
+          </h3>
+          <div class="green__and__bronze-inner">
+            <img
+              src="{% static 'images/Rectangle 9.png' %}"
+              alt=""
+              class="green__and__bronze-img"
+            />
+            <img
+              src="{% static 'images/Rectangle 8.png' %}"
+              alt=""
+              class="green__and__bronze-img"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="sale">
+        <div class="container">
+          <h3 class="sale__title">Sale</h3>
+          <div class="sale__inner">
+            <div class="sale__content-photo">
+              <div class="sale__left-column">
+                <div class="sale__left-item-one">
+                  <img src="{% static 'images/image 68.png' %} " alt="" />
+                </div>
+                <div class="sale__left-item">
+                  <img src="{% static 'images/image 64.png' %} " alt="" />
+                </div>
+                <div class="sale__left-item">
+                  <img src="{% static 'images/image 65.png' %} " alt="" />
+                </div>
+                <div class="sale__left-item">
+                  <img src="{% static 'images/image 66.png' %} " alt="" />
+                </div>
+              </div>
+              <div class="sale__big-photo">
+                <img src="{% static 'images/img.png'%} " alt="" class="sale__big__photo-img" />
+              </div>
+            </div>
+            <div class="sale__description">
+              <div class="description__title">
+                <div class="description__title-top">
+                  017TUBE By<br />
+                  Souyz Microphones
+                </div>
+                <div class="product__tag">Product tag: PEWJK2227003</div>
+                <div class="product__sale">
+                  $3000
+                  <span>$3700</span>
+                </div>
+              </div>
+              <div class="sale__description-model">
+                <div class="sale__description-model__title">
+                  <div class="sale__description-model__title-element">
+                    Description
+                  </div>
+                  <div class="minus__box"></div>
+                </div>
+                <div class="sale__description-model__text">
+                  <p>
+                    The 017 TUBE AND 017 FET microphones deliver the flawless classic sound you've been looking for. Hand-crafted capsules allow these microphones to capture the finest details, depth and warmth of sound. The soft yet clean top allows the 017 Series microphones to perfectly capture the subtle nuances of vocals, strings, and other instruments with complex transients and the widest dynamic range.
+                  </p>
+                </div>
+                <div class="sale__description-model__title">
+                  <div class="sale__description-model__title-element">
+                    DETAILS & FEATUREStion
+                  </div>
+                  <div class="minus__box"></div>
+                </div>
+                <div class="sale__description-model__text">
+                  <p>
+                    Type: tube condenser microphone<br />
+                    Capsule: S17 - 34mm gold-plated diaphragm<br />
+                    Frequency Response: 20Hz / 20kHz<br />
+                    Directivity: cardioid<br />
+                    Size: 226 mm Length x 55 mm Diameter<br />
+                    Weight: 950 grams (microphone only)<br />
+                    Impedance: 270 ohms<br />
+                    Sensitivity: 40 mV/Pa
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <div class="left__column">
+            <img src="{% static 'images/logo-big.svg' %} " alt="" />
+            <div class="tel">+7 (962)-439-39-33</div>
+            <div class="footer__text">
+              1678 S. Wall Road<br />
+              Salt Lake City<br />
+              UT 84104
+            </div>
+          </div>
+          <div class="center__Column">
+            <ul class="footer__list">
+              <li class="footer__list-item">
+                <a href="#" class="footer__list-link">About Us</a>
+              </li>
+              <li class="footer__list-item">
+                <a href="#" class="footer__list-link">Catalog</a>
+              </li>
+              <li class="footer__list-item">
+                <a href="#" class="footer__list-link">Sale</a>
+              </li>
+            </ul>
+          </div>
+          <div class="right__column">
+            <a href="#" class="social__link"
+              ><img src="{% static 'images/facebook.svg' %}" alt="" class="social"
+            /></a>
+            <a href="#" class="social__link"
+              ><img src="{% static 'images/instagram.svg' %}" alt="" class="social"
+            /></a>
+            <a href="#" class="social__link"
+              ><img src="{% static 'images/youtube.svg' %}" alt="" class="social"
+            /></a>
+          </div>
+        </div>
+        <div class="footer__rights">
+          <div class="rights__side">
+            ©2022 The NEWMICSTORE. All rights reserved.
+          </div>
+          <div class="left__side">
+            <div class="footer__rights-text">
+              <p>Privacy Policy</p>
+              <p>Terms of Service</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{% static 'js/slick.min.js' %} "></script>
+    <script src="{% static 'js/main.js' %} "></script>
+  </body>
+</html>
